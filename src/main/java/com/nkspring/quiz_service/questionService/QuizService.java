@@ -3,7 +3,6 @@ package com.nkspring.quiz_service.questionService;
 
 import com.nkspring.quiz_service.dao.QuizDao;
 import com.nkspring.quiz_service.model.QuestionWrapper;
-import com.nkspring.quiz_service.model.Questions;
 import com.nkspring.quiz_service.model.Quiz;
 import com.nkspring.quiz_service.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,30 +34,29 @@ public class QuizService {
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuestionsById(Integer questionId) {
-       Optional<Quiz> quiz =  quizDao.findById(questionId);
-       List<Questions> questionsFromDb = quiz.get().getQuestions();
-       List<QuestionWrapper> questionWrapper = new ArrayList<>();
-    for(Questions q: questionsFromDb){
-        QuestionWrapper qw = new QuestionWrapper(q.getId(),q.getCategory(),q.getOption1(),q.getOption2(),q.getOption3(),q.getOption4(),q.getQuestion());
-        questionWrapper.add(qw);
-
-    }
+//        Optional<Quiz> quiz = quizDao.findById(questionId);
+//        List<Questions> questionsFromDb = quiz.get().getQuestions();
+   List<QuestionWrapper> questionWrapper = new ArrayList<>();
+//        for (Questions q : questionsFromDb) {
+//            QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getCategory(), q.getOption1(), q.getOption2(), q.getOption3(), q.getOption4(), q.getQuestion());
+//            questionWrapper.add(qw);
+//        }
 
         return new ResponseEntity<>(questionWrapper, HttpStatus.OK);
 
     }
 
     public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
-        Quiz quiz = quizDao.findById(id).get();
-        List<Questions> questions = quiz.getQuestions();
-        int right = 0;
-        int i=0;
-        for(Response response : responses){
-            if(response.getResponse().equals(questions.get(i).getRightChoice()))
-                right++;
-            i++;
-        }
-        return new ResponseEntity<>(right,HttpStatus.OK);
+//        Quiz quiz = quizDao.findById(id).get();
+//        List<Questions> questions = quiz.getQuestions();
+//        int right = 0;
+//        int i = 0;
+//        for (Response response : responses) {
+//            if (response.getResponse().equals(questions.get(i).getRightChoice()))
+//                right++;
+//            i++;
+//        }
+//        return new ResponseEntity<>(right, HttpStatus.OK);
 
     }
 }

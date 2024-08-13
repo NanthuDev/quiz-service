@@ -3,6 +3,7 @@ package com.nkspring.quiz_service.questionController;
 
 
 import com.nkspring.quiz_service.model.QuestionWrapper;
+import com.nkspring.quiz_service.model.QuizDto;
 import com.nkspring.quiz_service.model.Response;
 import com.nkspring.quiz_service.questionService.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class QuizController {
     @Autowired
     QuizService quizService;
     @PostMapping("create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam Integer noQ, @RequestParam String title){
-      return quizService.createQuiz(category,noQ,title);
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto){
+      return quizService.createQuiz(quizDto.getCategoryName(),quizDto.getNumOfQ(),quizDto.getTitle());
 //        return new ResponseEntity<>("Quiz", HttpStatus.OK);
     }
 
