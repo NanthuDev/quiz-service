@@ -39,15 +39,10 @@ public class QuizService {
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuestionsById(Integer questionId) {
-//        Optional<Quiz> quiz = quizDao.findById(questionId);
-//        List<Questions> questionsFromDb = quiz.get().getQuestions();
-   List<QuestionWrapper> questionWrapper = new ArrayList<>();
-//        for (Questions q : questionsFromDb) {
-//            QuestionWrapper qw = new QuestionWrapper(q.getId(), q.getCategory(), q.getOption1(), q.getOption2(), q.getOption3(), q.getOption4(), q.getQuestion());
-//            questionWrapper.add(qw);
-//        }
-
-        return new ResponseEntity<>(questionWrapper, HttpStatus.OK);
+    Quiz quiz = quizDao.findById(questionId).get();
+    List<Integer> questionsFromDb = quiz.getQuestionIds();
+        ResponseEntity<List<QuestionWrapper>> questions = quizInterface.getQuestionsFromId(questionsFromDb);
+        return  questions ;
 
     }
 
